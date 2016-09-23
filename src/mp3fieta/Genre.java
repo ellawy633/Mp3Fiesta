@@ -29,16 +29,21 @@ public class Genre implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @OneToMany(mappedBy = "genre")
-    private List<Genre> genres = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "genre_parent_id")
+    private Genre parentGenre;
+    
+    @OneToMany(mappedBy = "parentGenre")
+    private List<Genre>subgenres = new ArrayList<>();
     
     
-     @ManyToOne
-    @JoinColumn(name = "genre_id")
-    private Genre genre;
+     
     
     
     
+     
+     
+     
     
       @ManyToMany(mappedBy = "genres")
     private List<Album> albums =new  ArrayList<>();
